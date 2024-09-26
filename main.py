@@ -4,13 +4,13 @@
 from configs import Config
 from pyrogram import Client, filters, idle
 from pyrogram.errors import QueryIdInvalid
-from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, InlineQueryResultArticle,InputTextMessageContent
+from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton, CallbackQuery, InlineQuery, InlineQueryResultArticle, InputTextMessageContent
 from LazyDeveloper.forcesub import ForceSub
 import asyncio
 
 # Bot Client for Inline Search
 Bot = Client(
-    session_name=Config.BOT_SESSION_NAME,
+    Config.BOT_SESSION_NAME,  # Removed 'session_name='
     api_id=Config.API_ID,
     api_hash=Config.API_HASH,
     bot_token=Config.BOT_TOKEN
@@ -18,7 +18,7 @@ Bot = Client(
 
 # User Client for Searching in Channel.
 User = Client(
-    session_name=Config.USER_SESSION_STRING,
+    Config.USER_SESSION_STRING,  # Removed 'session_name='
     api_id=Config.API_ID,
     api_hash=Config.API_HASH
 )
@@ -57,7 +57,7 @@ async def inline_handlers(_, event: Message):
             if "|||" in message.text:
                 f_text = message.text.split("|||", 1)[0]
                 msg_text = message.text.html.split("|||", 1)[0]
-            answers += f'**🎞 Movie Title ➠ ' + '' + f_text.split("\n", 1)[0] + '' + '\n\n📜 Download URLs ➠ ' + '' + f_text.split("\n", 2)[-1] + ' \n\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\nLink Will Auto Delete In 35Sec...⏰\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n\n**'
+            answers += f'**🎞 Movie Title ➠ ' + '' + f_text.split("\n", 1)[0] + '' + '\n\n📜 Download URLs ➠ ' + '' + f_text.split("\n", 2)[-1] + ' \n\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱▰▱\nLink Will Auto Delete In 35Sec...⏰\n▰▱▰▱▰▱▰▱▰▱▰▱▰▱\n\n**'
     try:
         msg = await event.reply_text(answers)
         await asyncio.sleep(35)
