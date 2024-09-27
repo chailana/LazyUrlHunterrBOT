@@ -1,6 +1,6 @@
 # in & as LazyDeveloper
 # Please Don't Remove Credit
-
+from pyrogram.enums import ParseMode
 from configs import Config
 from pyrogram import Client, filters, idle
 from pyrogram.errors import QueryIdInvalid
@@ -85,7 +85,7 @@ async def button(bot, cmd: CallbackQuery):
 					]
 				]
 			),
-			parse_mode="html"
+			parse_mode=ParseMode.HTML
 		)
         elif "Help_msg" in cb_data:
             await cmd.message.edit(
@@ -102,7 +102,7 @@ async def button(bot, cmd: CallbackQuery):
 					]
 				]
 			),
-			parse_mode="html"
+			parse_mode=ParseMode.HTML
 		)
         elif "gohome" in cb_data:
             await cmd.message.edit(
@@ -119,7 +119,7 @@ async def button(bot, cmd: CallbackQuery):
 					]
 				]
 			),
-			parse_mode="html"
+			parse_mode=ParseMode.HTML,
 		)
 
 # Start Clients
